@@ -2,6 +2,8 @@
 
 ## Version 1.0.3
 
+### Bug fix:
+
 - Fixed creation of double tag on space after tag replaced.
 
 ## Version 1.0.2
