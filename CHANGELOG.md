@@ -1,5 +1,12 @@
 # Bobbotag
 
+## Version 1.0.4
+
+### New features:
+
+- Added support to tag with multiple chars.
+- Added custom tag for replace.
+
 ## Version 1.0.3
 
 ### Bug fix:

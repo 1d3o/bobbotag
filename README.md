@@ -21,7 +21,8 @@ let users = {
 let text = ''
 
 const bobbo = new Bobbotag({
-  tagChar: '@'
+  tag: '@',
+  tagReplaced: '#@#'
 })
 
 function onChangeText(newText) {

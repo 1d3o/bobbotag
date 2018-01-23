@@ -54,15 +54,15 @@ class Bobbotag {
    */
   replaceCurrentTag (replaceObj) {
     if (!replaceObj.value || !replaceObj.label) {
-      throw new TypeError('tag should be replaced with a {value, label} object')
+      throw new TypeError('the tag should be replaced with a {value, label} object')
     }
     if (typeof replaceObj.value !== 'string' || typeof replaceObj.label !== 'string') {
-      throw new TypeError('value and label should be a string')
+      throw new TypeError('the value and label of replaceCurrentTag should be a string')
     }
 
     const lastWord = this._arrayLast(this.words)
-    const lastWordValue = this.options.tagChar + replaceObj.value.replace(/\s/g,'')
-    const lastWordLabel = replaceObj.label.replace(/\s/g,'')
+    const lastWordValue = this.options.tagReplaced + this._stringWithNoSpaces(replaceObj.value)
+    const lastWordLabel = this._stringWithNoSpaces(replaceObj.label)
 
     this._arrayReplaceLast(this.words, lastWordValue)
     this._arrayReplaceLast(this.prettyWords, lastWordLabel)
@@ -78,7 +78,7 @@ class Bobbotag {
    */
   changeText (text) {
     this.tagCurrent = null
-
+  
     const textWords = text.split(' ')
 
     if (textWords.length > this.words.length) {
@@ -90,13 +90,8 @@ class Bobbotag {
     }
 
     const lastWord = this._arrayLast(this.words)
-    if (lastWord) {
-      const firstChar = lastWord.charAt(0)
-      const secondChar = lastWord.charAt(1)
-
-      if ((firstChar === this.options.tagChar) && (secondChar !== '')) {
-        this.tagCurrent = lastWord.substr(1)
-      }
+    if (lastWord && lastWord.startsWith(this.options.tag)) {
+      this.tagCurrent = lastWord.substr(this.options.tag.length)
     }
   }
 
@@ -104,13 +99,19 @@ class Bobbotag {
   // //////////////////////////////////////////////////////////////////////////////
 
   _setOptions(options) {
-    const tagChar = options.tagChar || '@'
-    if (!tagChar || tagChar.length !== 1) {
-      throw new TypeError('tag char should be a single character')
+    const tag = this._stringWithNoSpaces(options.tag || '@')
+    if (!tag || typeof tag !== 'string') {
+      throw new TypeError('tag option should be a string')
+    }
+
+    const tagReplaced = this._stringWithNoSpaces(options.tagReplaced || '@')
+    if (!tagReplaced || typeof tagReplaced !== 'string') {
+      throw new TypeError('tag replaced option should be a string')
     }
 
     this.options = {
-      tagChar
+      tag,
+      tagReplaced
     }
   }
 
@@ -129,10 +130,10 @@ class Bobbotag {
     const lastWord = this._arrayLast(this.words)
     const lastTextWord = this._arrayLast(textWords)
 
-    if (lastWord.charAt(0) == this.options.tagChar &&
-        lastTextWord.charAt(0) !== this.options.tagChar) {
+    if (lastWord.startsWith(this.options.tagReplaced) &&
+        !lastTextWord.startsWith(this.options.tag)) {
       const sameTags = this.words.filter((el) => el == lastWord)
-      if (sameTags.length < 2) delete this.tags[lastWord.substr(1)]
+      if (sameTags.length < 2) delete this.tags[lastWord.substr(this.options.tag.length)]
 
       this._arrayRemoveLast(this.words)
       this._arrayRemoveLast(this.prettyWords)
@@ -140,6 +141,10 @@ class Bobbotag {
       this._arrayReplaceLast(this.words, lastTextWord)
       this._arrayReplaceLast(this.prettyWords, lastTextWord)
     }
+  }
+
+  _stringWithNoSpaces(string) {
+    return string.replace(/\s/g,'')
   }
 
   _arrayLast(array) {
