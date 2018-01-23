@@ -1,5 +1,11 @@
 # Bobbotag
 
+## Version 1.0.5
+
+### Bug fix:
+
+- Fixed getCurrentTag() with empty string returned.
+
 ## Version 1.0.4
 
 ### New features:
