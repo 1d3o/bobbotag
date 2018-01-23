@@ -1,0 +1,6 @@
+# System
+.DS_store
+
+# Node
+node_modules
+npm-debug.log

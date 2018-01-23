@@ -1,0 +1,12 @@
+{
+  "name": "bobbotag",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Ideonetwork",
+  "license": "MIT",
+  "dependencies": {}
+}
