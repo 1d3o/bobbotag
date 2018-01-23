@@ -60,7 +60,7 @@ class Bobbotag {
     }
 
     const lastWord = this._arrayLast(this.words)
-    const lastWordValue = this.options.tagChar + replaceObj.value
+    const lastWordValue = this.options.tagChar + replaceObj.value.replace(/\s/g,'')
     const lastWordLabel = replaceObj.label.replace(/\s/g,'')
 
     this._arrayReplaceLast(this.words, lastWordValue)

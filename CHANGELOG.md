@@ -1,5 +1,17 @@
 # Bobbotag
 
+## Version 1.0.2
+
+### Bug fix:
+
+- Fixed tag replace value with spaces.
+
+## Version 1.0.1
+
+### Bug fix:
+
+- Fixed error on delete first string char if it is a tag.
+
 ## Version 1.0
 
 First official release.
