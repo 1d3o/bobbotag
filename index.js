@@ -15,7 +15,6 @@ class Bobbotag {
       this.prettyWords = []
       this.tags = {}
 
-      this.tagReplaced = false
       this.tagCurrent = null
   }
 
@@ -23,8 +22,7 @@ class Bobbotag {
    * @function getPrettyText
    */
   getPrettyText () {
-    let extraChar = this.tagReplaced ? ' ' : ''
-    return this.prettyWords.join(' ') + extraChar
+    return this.prettyWords.join(' ')
   }
 
   /**
@@ -56,7 +54,10 @@ class Bobbotag {
    */
   replaceCurrentTag (replaceObj) {
     if (!replaceObj.value || !replaceObj.label) {
-      throw new TypeError('tag can be replaced with a {value, label} object')
+      throw new TypeError('tag should be replaced with a {value, label} object')
+    }
+    if (typeof replaceObj.value !== 'string' || typeof replaceObj.label !== 'string') {
+      throw new TypeError('value and label should be a string')
     }
 
     const lastWord = this._arrayLast(this.words)
@@ -65,9 +66,10 @@ class Bobbotag {
 
     this._arrayReplaceLast(this.words, lastWordValue)
     this._arrayReplaceLast(this.prettyWords, lastWordLabel)
+    this._arrayAdd(this.words, '')
+    this._arrayAdd(this.prettyWords, '')
 
     this.tags[replaceObj.value] = replaceObj
-    this.tagReplaced = true
   }
 
   /**
@@ -75,6 +77,8 @@ class Bobbotag {
    * @param {string} text 
    */
   changeText (text) {
+    this.tagCurrent = null
+
     const textWords = text.split(' ')
 
     if (textWords.length > this.words.length) {
@@ -92,12 +96,8 @@ class Bobbotag {
 
       if ((firstChar === this.options.tagChar) && (secondChar !== '')) {
         this.tagCurrent = lastWord.substr(1)
-      } else {
-        this.tagCurrent = null
       }
     }
-
-    this.tagReplaced = false
   }
 
   // Helpers:

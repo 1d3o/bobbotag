@@ -3,18 +3,18 @@ const Bobbotag = require('./index')
 
 let users = {
   foo: {
-    value: 12,
+    value: '12',
     label: 'Foo Bar'
   },
   bar: {
-    value: 42,
+    value: '42',
     label: 'Bar Foo'
   }
 }
 let text = ''
 
 const bobbo = new Bobbotag({
-  tagChar: '@'
+  tag: '@@'
 })
 
 function onChangeText(newText) {

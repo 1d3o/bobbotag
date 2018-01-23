@@ -9,11 +9,11 @@ const Bobbotag = require('bobbotag')
 
 let users = {
   foo: {
-    value: 12,
+    value: '12',
     label: 'Foo Bar'
   },
   bar: {
-    value: 42,
+    value: '42',
     label: 'Bar Foo'
   }
 }
