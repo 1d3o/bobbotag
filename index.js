@@ -86,13 +86,15 @@ class Bobbotag {
     }
 
     const lastWord = this._arrayLast(this.words)
-    const firstChar = lastWord.charAt(0)
-    const secondChar = lastWord.charAt(1)
+    if (lastWord) {
+      const firstChar = lastWord.charAt(0)
+      const secondChar = lastWord.charAt(1)
 
-    if ((firstChar === this.options.tagChar) && (secondChar !== '')) {
-      this.tagCurrent = lastWord.substr(1)
-    } else {
-      this.tagCurrent = null
+      if ((firstChar === this.options.tagChar) && (secondChar !== '')) {
+        this.tagCurrent = lastWord.substr(1)
+      } else {
+        this.tagCurrent = null
+      }
     }
 
     this.tagReplaced = false
