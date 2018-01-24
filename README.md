@@ -2,7 +2,17 @@
 
 A simple node module to detect and manage tags on input strings.
 
+## Installation
+
+```shell
+
+npm install bobbotag
+
+```
+
 ## Usage
+
+Bobbotag can be used as a normal class instance on change text callback.
 
 ```js
 const Bobbotag = require('bobbotag')
@@ -26,14 +36,19 @@ const bobbo = new Bobbotag({
 })
 
 function onChangeText(newText) {
+  // give new text to instance
   bobbo.changeText(newText)
 
+  // check if a tag is detected
   if (bobbo.getCurrentTag() && users[bobbo.getCurrentTag()]) {
+    console.log('tag detected!')
+
     bobbo.replaceCurrentTag(
       users[bobbo.getCurrentTag()]
     )
   }
 
+  // update rendered text with updated text from instance
   text = bobbo.getPrettyText()
 }
 
@@ -44,6 +59,16 @@ function onSubmit() {
 }
 ```
 
-## TODO
+## Try it
 
-- Write a better documentation.
+You can start to play with bobbotag running the test script.
+
+```shell
+
+git clone https://github.com/ideonetwork/bobbotag
+
+npm run test
+
+```
+
+![Example of usage](doc/example.gif)
