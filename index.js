@@ -92,7 +92,7 @@ class Bobbotag {
     const lastWord = this._arrayLast(this.words)
     if (lastWord && lastWord.startsWith(this.options.tag)) {
       const tag = lastWord.substr(this.options.tag.length)
-      this.tagCurrent = tag && tag.length > 0 ? tag : null
+      this.tagCurrent = tag
     }
   }
 
