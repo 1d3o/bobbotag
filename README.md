@@ -32,7 +32,7 @@ let text = ''
 
 const bobbo = new Bobbotag({
   tag: '@',
-  tagReplaced: '#@#'
+  tagReplaced: '#'
 })
 
 function onChangeText(newText) {
