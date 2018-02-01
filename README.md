@@ -2,11 +2,21 @@
 
 A simple node module to detect and manage tags on input strings.
 
+![Example of usage](doc/example.gif)
+
 ## Installation
 
+Legacy version
 ```shell
 
 npm install bobbotag
+
+```
+
+Latest version
+```shell
+
+npm install ideonetwork/bobbotag
 
 ```
 
@@ -70,5 +80,3 @@ git clone https://github.com/ideonetwork/bobbotag
 npm run test
 
 ```
-
-![Example of usage](doc/example.gif)
