@@ -2,8 +2,6 @@
 
 A simple node module to detect and manage tags on input strings.
 
-![Example of usage](doc/example.gif)
-
 ## Installation
 
 Legacy version
